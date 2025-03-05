@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="A Recurrent Compression Approach for Efficient Long-form Context and Query Dependent Modeling in LLMs">
-  <meta name="keywords" content="LCIRC, QD-LCIRC, long-form context">
+        content="We propose random conditioning to overcome student models failing to generate images for conditions not covered by the paired dataset during diffusion model distillation, enabling compact compression with minimal performance loss.">
+  <meta name="keywords" content="Diffusion models, Knowledge distillation, Model compression, Generative modeling, Resource efficiency">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LCIRC: A Recurrent Compression Approach for Efficient Long-form Context and Query Dependent Modeling in LLMs</title>
+  <title>Random Conditioning for Diffusion Model Compression with Distillation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -74,24 +74,24 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">LCIRC: A Recurrent Compression Approach for Efficient Long-form Context and Query Dependent Modeling in LLMs</h1>
+          <h1 class="title is-1 publication-title">Random Conditioning for Diffusion Model Compression with Distillation</h1>
           <div class="is-size-3 publication-authors">
-            <img src="./static/images/acl-logo.png" alt="NAACL Logo" style="height: 40px; vertical-align: middle;">
-            <b>NAACL 2025</b>
+            <!-- <img src="./static/images/acl-logo.png" alt="NAACL Logo" style="height: 40px; vertical-align: middle;"> -->
+            <b>CVPR 2025</b>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Sumin An<sup>1</sup>,</span>
-            <span class="author-block">Junyoung Sung<sup>1</sup>,</span>
-            <span class="author-block">Wonpyo Park<sup>2</sup>,</span>
+            <span class="author-block">Dohyun Kim<sup>1</sup>*</span>
+            <span class="author-block">Sehwan Park<sup>1</sup>*</span>
+            <span class="author-block">Geonhee Han<sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://parkchanjun.github.io/">Chanjun Park</a><sup>1,&dagger;</sup>,</span>
+              <a href="https://seung-kim.github.io/seungkim/">Seung Wook Kim</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://phseo.github.io/">Paul Hongsuck Seo</a><sup>1,&dagger;
+              <a href="https://phseo.github.io/">Paul Hongsuck Seo</a><sup>1</sup>;
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Korea University,</span>
-            <span class="author-block"><sup>2</sup>Google</span>
-            <span class="eql-cntrb"><small><br><sup>&dagger;</sup>Co-corresponding Authors</small></span>
+            <span class="author-block"><sup>2</sup>NVIDIA</span>
+            <span class="eql-cntrb"><small><br>* Equal contribution</small></span>
           </div>
           <div style="display: flex; justify-content: center; align-items: center;">
             <a href="https://www.korea.edu/sites/en/index.do" target="_blank">
@@ -100,7 +100,7 @@
             <a href="https://miil.korea.ac.kr/" target="_blank">
               <img src="./static/images/miil.png" alt="miil" style="height: 54px; margin-right: 50px;">
             </a>
-            <img src="./static/images/Google_2015_logo.svg.webp" alt="google" style="height: 50px;">
+            <img src="./static/images/NVLogo_2D.jpg" alt="NVIDIA" style="height: 50px;">
           </div>
 
           <div class="column has-text-centered">
@@ -125,7 +125,7 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href="https://github.com/ssuminan/LCIRC"
+                <a href="https://github.com/dohyun-as/Random-Conditioning"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -134,7 +134,7 @@
                   </a>
               </span>
               <span class="link-block">
-                <a href="https://huggingface.co/datasets/ssumin/fineweb-lqa"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" 
@@ -159,22 +159,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            While large language models (LLMs) excel in generating coherent and contextually rich outputs,
-            their capacity to efficiently handle long-form contexts is limited by fixed-length position embeddings.
-            Additionally, the computational cost of processing long sequences increases quadratically,
-            making it challenging to extend context length.
+            Diffusion models have emerged as a cornerstone of generative modeling, 
+            capable of producing high-quality images through a progressive denoising process. 
+            However, their remarkable performance comes with substantial computational costs, 
+            driven by large model sizes and the need for multiple sampling steps. Knowledge distillation, 
+            a popular approach for model compression, transfers knowledge from a complex teacher model to a simpler student model.
+            While extensively studied for recognition tasks, its application to diffusion models—especially for generating concepts
+            not covered by the training image data—remains relatively unexplored.
           </p>
           <p>
-            To address these challenges, we propose Long-form Context Injection with Recurrent Compression (LCIRC),
-            a method that enables the efficient processing long-form sequences beyond the model's length limit
-            through recurrent compression without retraining the entire model.
-          </p>
-          <p>
-            We further introduce query dependent context modeling, which selectively compresses query-relevant
-            information, ensuring that the model retains the most pertinent content. Our empirical results
-            demonstrate that Query Dependent LCIRC (QD-LCIRC) significantly improves LLM's ability to manage
-            extended contexts, making it well-suited for tasks that require both comprehensive context
-            understanding and query relevance.
+            In this work, we propose a novel approach called random conditioning, 
+            which pairs noised images with randomly chosen text conditions to enable efficient, image-free knowledge distillation.
+            By leveraging random conditioning, we show that it is possible to generate unseen concepts not included in the training data. 
+            When applied to conditional diffusion model distillation, this method enables the student model to effectively explore the condition space, 
+            leading to notable performance gains. Our approach facilitates the resource-efficient deployment of generative diffusion models, 
+            broadening their accessibility for both research and practical applications.
           </p>
         </div>
       </div>
@@ -189,17 +188,10 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Method</h2>
-        <img src="./static/images/lcirc.png" class="center"/>
+        <img src="./static/images/randcond.png" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>The overall process of the proposed Long-form Context Injection with Recurrent Compression (LCIRC).</b>
-            LCIRC comprises two components: Recurrent Context Compression (left) and Compressed Context Injection (right).
-            In the $i$-th step of Recurrent Context Compression, the previously compressed features $\mathbf{h}^{(i-1)}$ and
-            the segment embeddings $\mathbf{s}_{i}$ are fed into the Perceiver module as query and input features, respectively.
-            The compressed features $\mathbf{h}^{(i)}$ are then generated and reinjected as query features for the subsequent
-            recurrence step. The initial query features $\mathbf{h}^{(0)}$ are learnable parameters. In Compressed Context Injection,
-            the concatenated compressed features $\mathbf{h}$ serve as input to the Gated Cross Attention layer.
-            Layers indicated with a fire symbol represent trained layers, while layers marked with a snow symbol denote frozen layers.
+            <b>Text, text</b>
           </p>
         </div>
       </div>
@@ -211,15 +203,7 @@
         <img src="./static/images/ssbptt.png" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>Comparisons of the proposed Selective State BPTT with vanilla and truncated BPTT.</b>
-            Green boxes represent timesteps where gradients are computed in BPTT whereas the light green ones indicate the timesteps without gradient computation. 
-            Finally, dotted red lines illustrate the gradient flows.
-            (a) Vanilla BPTT computes the full gradients through the entire timesteps in recurrence but is computationally infeasible with a large $N$.
-            The gradients for $\mathbf{h}^{(i)}$ receives upstream gradients both through the recurrent connection and through the direct connection from $\mathbf{h}$. 
-            (b) Truncated BPTT backprobagates gradients to the last $T$ timesteps only significantly reducing computational costs.
-            However, it does not transfer gradient flows to timesteps further than $T$ (marked with light green color) and fails to learn long-term QD modeling.
-            (c) Our proposed Selective State BPTT selects several random timesteps and transfer gradient flows directly through the direct connection from $\mathbf{h}$,
-            which enables efficient learning of long-term QD modeling capabilities.
+            <b>textext</b>
           </p>
         </div>
       </div>
@@ -241,10 +225,7 @@
         <img src="./static/images/result2.png" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>Per-task performance on L-Eval.</b>
-            The following abbreviations are used: <b>CS</b> denotes Coursera, <b>QALIT</b> refers to QuALITY, <b>SF</b> represents SFiction, <b>LFQA</b> refers to LongFQA, 
-            and <b>NQA</b> to NarrativeQA. <b>Avg</b> indicates the mean performance score across all subtasks within the respective benchmark. <b>FW-LQA</b> indicates whether 
-            the model has been fine-tuned on FineWeb-LQA, while <b>QD</b> denotes whether query dependent modeling.
+            <b>texttext</b>
           </p>
         </div>
       </div>
@@ -257,9 +238,9 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{an2025lcirc,
-  title={LCIRC: A Recurrent Compression Approach for Efficient Long-form Context and Query Dependent Modeling in LLMs},
-  author={An, Sumin and Sung, Junyoung and Park, Wonpyo and Park, Chanjun and Seo, Paul Hongsuck},
-  journal={arXiv preprint arXiv:2502.06139},
+  title={Random Conditioning for Diffusion Model Compression with Distillation},
+  author={Kim, Dohyun and Park, Sehwan and Han, Geonhee and Kim, Seung Wook and Seo, Paul Hongsuck},
+  journal={arXiv preprint arXiv:},
   year={2025}
 }</code></pre>
   </div>
