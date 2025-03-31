@@ -189,7 +189,8 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Method</h2>
-        <img src="./static/images/randcond.png" class="center" width="600"/>
+        <!-- <img src="./static/images/randcond.png" class="center" width="600"/> -->
+        <img src="./static/images/randcond.png" style="display: block; margin: 0 auto;" width="600"/>
         <div class="content has-text-justified">
           <p>
             <b>The overall process of the Random Conditioning.</b> 
@@ -237,26 +238,26 @@
         </div>
       </div>
  
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
-          <img src="./static/images/quantitative_results_unseen.png" class="center"/>
-          <div class="content has-text-justified">
-            <p>
-              <b>Knowledge transfer of unseen concepts.</b>
-              Models are trained without animal images. “Rand Cond” denotes random conditioning, and “Additional Texts” indicates extra text-only data.
-              The gray row shows teacher performance. Random conditioning enables the student to handle unseen concepts.
-            </p>
-          </div>
-          <img src="./static/images/quantitative_results.png" class="center"/>
-          <div class="content has-text-justified">
-            <p>
-              <b>Impact of random conditioning.</b>
-              “Rand Cond” indicates whether random conditioning is applied, and “Real image” shows whether real images were used during training.
-              The gray row shows teacher performance. Random conditioning leads to better performance of the student model.
-            </p>
-          </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+        <img src="./static/images/quantitative_results_unseen.png" class="center"/>
+        <div class="content has-text-justified">
+          <p>
+            <b>Knowledge transfer of unseen concepts.</b>
+            Models are trained without animal images. “Rand Cond” denotes random conditioning, and “Additional Texts” indicates extra text-only data.
+            The gray row shows teacher performance. Random conditioning enables the student to handle unseen concepts.
+          </p>
         </div>
+        <img src="./static/images/quantitative_results.png" class="center"/>
+        <div class="content has-text-justified">
+          <p>
+            <b>Impact of random conditioning.</b>
+            “Rand Cond” indicates whether random conditioning is applied, and “Real image” shows whether real images were used during training.
+            The gray row shows teacher performance. Random conditioning leads to better performance of the student model.
+          </p>
+        </div>
+      </div>
 
     </div>
 
