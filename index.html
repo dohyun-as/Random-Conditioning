@@ -76,13 +76,13 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Random Conditioning for Diffusion Model Compression with Distillation</h1>
           <div class="is-size-3 publication-authors">
-            <!-- <img src="./static/images/acl-logo.png" alt="NAACL Logo" style="height: 40px; vertical-align: middle;"> -->
+            <img src="./static/images/CVPR-logo.svg" alt="CVPR Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
             <b>CVPR 2025</b>
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">Dohyun Kim<sup>1</sup>*</span>
             <span class="author-block">Sehwan Park<sup>1</sup>*</span>
-            <span class="author-block">Geonhee Han<sup>2</sup>,</span>
+            <span class="author-block">Geonhee Han<sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://seung-kim.github.io/seungkim/">Seung Wook Kim</a><sup>2</sup>,</span>
             <span class="author-block">
@@ -159,21 +159,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Diffusion models have emerged as a cornerstone of generative modeling, 
-            capable of producing high-quality images through a progressive denoising process. 
-            However, their remarkable performance comes with substantial computational costs, 
-            driven by large model sizes and the need for multiple sampling steps. Knowledge distillation, 
-            a popular approach for model compression, transfers knowledge from a complex teacher model to a simpler student model.
-            While extensively studied for recognition tasks, its application to diffusion models—especially for generating concepts
-            not covered by the training image data—remains relatively unexplored.
-          </p>
-          <p>
-            In this work, we propose a novel approach called random conditioning, 
-            which pairs noised images with randomly chosen text conditions to enable efficient, image-free knowledge distillation.
-            By leveraging random conditioning, we show that it is possible to generate unseen concepts not included in the training data. 
-            When applied to conditional diffusion model distillation, this method enables the student model to effectively explore the condition space, 
-            leading to notable performance gains. Our approach facilitates the resource-efficient deployment of generative diffusion models, 
-            broadening their accessibility for both research and practical applications.
+            Diffusion models generate high-quality images through progressive denoising 
+            but are computationally intensive due to large model sizes and repeated sampling.
+            Knowledge distillation—transferring knowledge from a complex teacher to a simpler 
+            student model—has been widely studied in recognition tasks, particularly for transferring 
+            concepts unseen during student training.
+            However, its application to diffusion models remains underexplored, 
+            especially in enabling student models to generate concepts not covered by the training images.
+            In this work, we propose Random Conditioning, a novel approach 
+            that pairs noised images with randomly selected text conditions to enable efficient, 
+            image-free knowledge distillation. 
+            By leveraging this technique, we show that the student can generate concepts unseen in the training images.
+            When applied to conditional diffusion model distillation, our method allows the student 
+            to explore the condition space without generating condition-specific images,
+            resulting in notable improvements in both generation quality and efficiency.
+            This promotes resource-efficient deployment of generative diffusion models, 
+            broadening their accessibility for both research and real-world applications.
           </p>
         </div>
       </div>
@@ -188,10 +189,15 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Method</h2>
-        <img src="./static/images/randcond.png" class="center"/>
+        <img src="./static/images/randcond.png" class="center" width="600"/>
         <div class="content has-text-justified">
           <p>
-            <b>Text, text</b>
+            <b>The overall process of the Random Conditioning.</b> 
+            Given a large set of text prompts, we generate images using the teacher model only for a small subset, significantly reducing the image generation cost. 
+            These images are then used to create noised inputs for knowledge distillation.
+            During training, we pair these noised images with either their original text prompts or randomly selected ones from the full set.
+            This allows the student model to receive supervision across a much broader condition space than covered by the available image-text pairs.
+            In doing so, <b>Random Conditioning enables image-free, data-efficient distillation</b> of conditional diffusion models, allowing the student to generalize beyond the limited set of generated images.
           </p>
         </div>
       </div>
@@ -199,11 +205,14 @@
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Training</h2>
-        <img src="./static/images/ssbptt.png" class="center"/>
+        <h2 class="title is-3 has-text-centered">Observations and Motivation</h2>
+        <img src="./static/images/observation_motivation.png" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>textext</b>
+            <b>Conditioning behavior across timesteps.</b>
+            The figure above shows how conditioning affects the denoising process across timesteps: each image is reconstructed from a noised version of the same input image using a different text condition shown on the right.
+            We observe that when $t$ is small, the generated image reflects the original input, while at large $t$, it follows the conditioning text.
+            This supports our random conditioning strategy, where the condition does not need to align with the noised input $\bx_t$.
           </p>
         </div>
       </div>
@@ -211,24 +220,44 @@
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Results</h2>
-        <img src="./static/images/result1.png" class="center"/>
+        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+        <img src="./static/images/qualitative_results_unseen.jpg" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>Per-task performance on InfiniteBench and LongBench.</b>
-            The following abbreviations are used: <b>NQA</b> denotes NarrativeQA, <b>MFQA</b> represents MultiFieldQA-en,
-            <b>HQA</b> refers to HotpotQA, <b>2WQA</b> to 2WikiMQA, and <b>MSQ</b> to MuSiQue. <b>Avg</b> indicates the average score across all subtasks within respective benchmarks.
-            <b>FW-LQA</b> indicates whether the model is fine-tuned on FineWeb-LQA.
-            Our QD-LCIRC consistently outperforms competing methods, achieving the highest average score by incorporating query dependent modeling, as indicated in the <b>QD</b> column.
+            <b>Qualitative results on unseen concepts.</b>
+            Images generated by models distilled <b>without any animal images</b>, using animal-related captions from DiffusionDB.
           </p>
         </div>
-        <img src="./static/images/result2.png" class="center"/>
+        <img src="./static/images/qualitative_results.jpg" class="center"/>
         <div class="content has-text-justified">
           <p>
-            <b>texttext</b>
+            <b>Qualitative comparison with baseline models.</b>
+            Images generated by our model and baseline models, using captions from DiffusionDB as prompts.
           </p>
         </div>
       </div>
+ 
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+          <img src="./static/images/quantitative_results_unseen.png" class="center"/>
+          <div class="content has-text-justified">
+            <p>
+              <b>Knowledge transfer of unseen concepts.</b>
+              Models are trained without animal images. “Rand Cond” denotes random conditioning, and “Additional Texts” indicates extra text-only data.
+              The gray row shows teacher performance. Random conditioning enables the student to handle unseen concepts.
+            </p>
+          </div>
+          <img src="./static/images/quantitative_results.png" class="center"/>
+          <div class="content has-text-justified">
+            <p>
+              <b>Impact of random conditioning.</b>
+              “Rand Cond” indicates whether random conditioning is applied, and “Real image” shows whether real images were used during training.
+              The gray row shows teacher performance. Random conditioning leads to better performance of the student model.
+            </p>
+          </div>
+        </div>
+
     </div>
 
   </div>
