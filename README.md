@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
-  <img src="assets/ku-logo.png" alt="korea" height="50" style="margin-right: 5px;">
+  <img src="assets/ku-logo.png" alt="korea" height="50" style="margin-right: 12px;">
   <img src="assets/miil.png" alt="miil" height="54">
   <img src="assets/NVLogo_2D_H.jpg" alt="nvidia" height="50">
 </div>
