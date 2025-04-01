@@ -1,7 +1,7 @@
 <div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
   <img src="assets/ku-logo.png" alt="korea" height="50">
   <img src="assets/miil.png" alt="miil" height="54">
-  <img src="assets/NVIDIA-logo-white-16x9.png" alt="nvidia" height="50">
+  <img src="assets/NVLogo_2D_H.jpg" alt="nvidia" height="50">
 </div>
 
 # Random Conditioning for Diffusion Model Compression with Distillation (CVPR 2025)
