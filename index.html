@@ -212,7 +212,7 @@
         <div class="content has-text-justified">
           <p>
             <b>Conditioning behavior across timesteps.</b>
-            The figure above shows how conditioning affects the denoising process across timesteps: each image is reconstructed from a noised version of the same input image using a different text condition shown on the right.
+            The figure above shows how conditioning affects the denoising process across timesteps: Generated results conditioned on the rightmost column using the input image from the leftmost column at each timestep.
             We observe that when $t$ is small, the generated image reflects the original input, while at large $t$, it follows the conditioning text.
             This supports our random conditioning strategy, where the condition does not need to align with the noised input $\bx_t$.
           </p>
