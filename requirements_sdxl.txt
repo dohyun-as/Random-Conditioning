@@ -1,0 +1,10 @@
+transformers==4.47.1
+diffusers==0.32.1
+torch-fidelity==0.3.0
+pytorch-fid==0.3.0
+open_clip_torch==2.18.0
+accelerate==1.2.1
+datasets==2.11.0
+peft==0.14.0
+wandb==0.15.11
+thop==0.1.1.post2209072238
