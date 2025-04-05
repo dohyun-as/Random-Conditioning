@@ -4,13 +4,13 @@
   <img src="assets/NVLogo_2D_H.jpg" alt="nvidia" height="50">
 </div>
 
-# Random Conditioning for Diffusion Model Compression with Distillation (CVPR 2025)
+# Random Conditioning with Distillation for Data-Efficient Diffusion Model Compression (CVPR 2025)
 
-[[arXiv](#)] [[Project Page](https://dohyun-as.github.io/Random-Conditioning/)] [[Dataset](#)]<br>
+[[arXiv](https://arxiv.org/abs/2504.02011)] [[Project Page](https://dohyun-as.github.io/Random-Conditioning/)] [[Dataset](#)]<br>
 
 by Dohyun Kim, Sehwan Park, Geonhee Han, [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Paul Hongsuck Seo](https://phseo.github.io/)
 
-This is the official repository for our CVPR 2025 paper: **Random Conditioning for Diffusion Model Compression with Distillation**. We propose a novel random conditioning strategy to enable image-free, efficient knowledge distillation of conditional diffusion models.
+This is the official repository for our CVPR 2025 paper: **Random Conditioning with Distillation for Data-Efficient Diffusion Model Compression**. We propose a novel random conditioning strategy to enable image-free, efficient knowledge distillation of conditional diffusion models.
 
 Our code builds on top of [BKSDM](https://github.com/Nota-NetsPresso/BK-SDM).
 
@@ -71,7 +71,7 @@ If you use our code or findings, please cite:
 
 ```bibtex
 @inproceedings{kim2025randcond,
-  title={Random Conditioning for Diffusion Model Compression with Distillation},
+  title={Random Conditioning with Distillation for Data-Efficient Diffusion Model Compression},
   author={Kim, Dohyun and Park, Sehwan and Han, Geonhee and Kim, Seung Wook and Seo, Paul Hongsuck},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2025}
