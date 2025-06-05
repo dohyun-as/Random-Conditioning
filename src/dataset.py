@@ -196,7 +196,7 @@ def collate_fn(tokenizer, tokenizer_2=None):
         input_ids = inputs.input_ids
 
         if tokenizer_2 is not None:
-            inputs_2 = tokenizer(
+            inputs_2 = tokenizer_2(
                 captions, max_length=tokenizer.model_max_length, padding="max_length", truncation=True, return_tensors="pt"
             )      
             input_ids_2 = inputs_2.input_ids
