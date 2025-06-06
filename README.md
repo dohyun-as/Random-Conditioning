@@ -70,10 +70,12 @@ If you have any questions, feel free to email Dohyun (a12s12@korea.ac.kr). If yo
 If you use our code or findings, please cite:
 
 ```bibtex
-@article{kim2025random,
-  title={Random Conditioning with Distillation for Data-Efficient Diffusion Model Compression},
-  author={Kim, Dohyun and Park, Sehwan and Han, Geonhee and Kim, Seung Wook and Seo, Paul Hongsuck},
-  journal={arXiv preprint arXiv:2504.02011},
-  year={2025}
+@InProceedings{Kim_2025_CVPR,
+    author    = {Kim, Dohyun and Park, Sehwan and Han, Geonhee and Kim, Seung Wook and Seo, Paul Hongsuck},
+    title     = {Random Conditioning for Diffusion Model Compression with Distillation},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {18607-18618}
 }
 ```
